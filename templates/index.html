@@ -2,6 +2,29 @@
 <html>
 <head>
     <title>ChatBot</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .chat-area {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">ChatBot</h1>
+        <div class="row mt-4">
+            <div class="col-md-8 offset-md-2">
+                <div class="chat-area"></div>
+                <form id="chat-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="user-input" autocomplete="off">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -14,22 +37,14 @@
                     type: "POST",
                     data: { user_input: user_input },
                     success: function(response) {
-                        $("#chat-area").append("<p><strong>User:</strong> " + user_input + "</p>");
-                        $("#chat-area").append("<p><strong>ChatBot:</strong> " + response + "</p>");
+                        $(".chat-area").append("<p class='mb-2'><strong>User:</strong> " + user_input + "</p>");
+                        $(".chat-area").append("<p class='mb-4'><strong>ChatBot:</strong> " + response + "</p>");
                         $("#user-input").val("");
                     }
                 });
             });
         });
     </script>
-</head>
-<body>
-    <h1>ChatBot</h1>
-    <div id="chat-area"></div>
-    <form id="chat-form">
-        <input type="text" id="user-input" autocomplete="off">
-        <input type="submit" value="Send">
-    </form>
 </body>
 </html>
 
